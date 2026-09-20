@@ -3,6 +3,8 @@
 Everything published on this site is public record. This page says where each
 kind of record lives, and the rule every page follows before it goes up.
 
+All links below were checked on 2026-09-20.
+
 ## The rule
 
 **Every figure, name, date and contact detail carries a public source.** If you
@@ -24,22 +26,52 @@ Two failure modes to watch for specifically:
   not it is true, and reviewers tend to wave through anything well formatted.
   Fluency is not evidence.
 
-## Where to look
+## Start here: the Full Disclosure Policy Portal
 
-| What you need                 | Where it lives                                              | Notes                                                         |
-| ----------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------- |
-| Budget, procurement, projects | DILG **Full Disclosure Policy Portal** (`fdpp.dilg.gov.ph`) | Start here. LGUs are required to post these quarterly         |
-| Audited financial statements  | **COA** Annual Audit Reports, listed per LGU                | Authoritative; downloadable PDFs                              |
-| Revenues and expenditures     | **BLGF** Statement of Receipts and Expenditures             | Comparable year to year                                       |
-| Elected officials             | **COMELEC** results for the most recent local elections     | Cross-check against DILG                                      |
-| Officials, offices, barangays | **DILG** local government profile                           | Second source for names and contacts                          |
-| Population, barangay counts   | **PSA** census                                              |                                                               |
-| Ordinances and resolutions    | Sangguniang Bayan                                           | Often only on the municipality's Facebook page                |
-| Announcements, office hours   | The municipality's official channels                        | Screenshot-and-date anything that only exists on social media |
+DILG Memorandum Circular 2010-083 requires every LGU to post its core financial
+documents each quarter. They are collected at:
 
-Compliance varies between municipalities. If Carigara has not posted something,
-record that it is unavailable rather than substituting a neighbouring town's
-figure.
+**<https://fdpp.dilg.gov.ph/fdpp/report>**
+
+No account is needed — the login box on the front page is for LGU staff who
+upload. Filter by document type, region, province, LGU and year. Carigara is
+under **REGION VIII - EASTERN VISAYAS**, province of **Leyte**.
+
+Document types available through that filter:
+
+| Most useful first                                                       |                                                          |
+| ----------------------------------------------------------------------- | -------------------------------------------------------- |
+| Annual Budget Report                                                    | What the municipality planned to spend                   |
+| Statement of Receipts and Expenditures                                  | What it actually took in and spent                       |
+| Annual Procurement Plan                                                 | What it intended to buy                                  |
+| Bid Results on Civil Works, Goods and Services, and Consulting Services | Who won, and for how much                                |
+| 20% of the National Tax Allotment Utilization                           | The development fund — this is where local projects live |
+| Local Disaster Risk Reduction and Management Fund Utilization           | Relevant for a Leyte municipality                        |
+| Report of Special Education Fund Utilization                            | School spending                                          |
+| Manpower Complement                                                     | Positions and staffing                                   |
+| Quarterly Statement of Cash Flow                                        |                                                          |
+| Trust Fund Utilization                                                  |                                                          |
+| Statement of Indebtedness, Payments and Balances                        |                                                          |
+| Unliquidated Cash Advances                                              |                                                          |
+| Supplemental Procurement Plan                                           |                                                          |
+| Annual Gender and Development Accomplishment Report                     |                                                          |
+
+Posting compliance varies between municipalities. If Carigara has not posted
+something, record that it is unavailable rather than substituting a neighbouring
+town's figure.
+
+## Everything else
+
+| What you need                                      | Where                                                                                                                 | Notes                                                                               |
+| -------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| Audited financial statements                       | COA Annual Audit Reports for LGUs — <https://www.coa.gov.ph/reports/annual-audit-reports/aar-local-government-units/> | By year, then region and province. Browser only; the site refuses scripted requests |
+| Revenues and expenditures, comparable year to year | BLGF fiscal data — <https://blgf.gov.ph/lgu-fiscal-data/> and <https://blgf.gov.ph/lgu-timeseries-data/>              | SRE data published for FY2009 onward                                                |
+| Regional issuances and LGU bulletins               | DILG Region VIII — <https://region8.dilg.gov.ph/>                                                                     | Closest thing to a regional noticeboard                                             |
+| Elected officials                                  | COMELEC results for the most recent local elections                                                                   | Cross-check against DILG before publishing a name                                   |
+| Officials, offices, barangays                      | DILG local government profile                                                                                         | Second source for names and contacts                                                |
+| Population, barangay counts                        | PSA census — <https://psa.gov.ph/>                                                                                    | Browser only; refuses scripted requests                                             |
+| Ordinances and resolutions                         | Sangguniang Bayan                                                                                                     | Often only on the municipality's Facebook page                                      |
+| Office hours, announcements                        | The municipality's official channels                                                                                  | Screenshot and date anything that exists only on social media                       |
 
 ## How to cite
 
@@ -50,8 +82,8 @@ Every page that states a fact ends with a short provenance note:
 
 **Sources**
 
-- [FY 2025 Annual Budget](https://example.gov.ph/...) — DILG Full Disclosure
-  Policy Portal, retrieved 2026-09-20
+- [FY 2025 Annual Budget Report](https://fdpp.dilg.gov.ph/fdpp/report) — DILG
+  Full Disclosure Policy Portal, retrieved 2026-09-20
 - Office hours confirmed by phone with the Municipal Treasurer's Office,
   2026-09-20
 ```
@@ -62,6 +94,16 @@ date is what tells the next contributor whether to re-check.
 For anything confirmed by phone or in person, say so and date it. That is a
 legitimate source — it just cannot be re-checked by a reader, so it needs to be
 labelled as what it is.
+
+## If a portal is down or empty
+
+Both the FDP Portal and COA have had gaps. When a record cannot be retrieved:
+
+1. Note the attempt and the date on the page's to-do, not on the page itself.
+2. Try the municipality directly — an FOI request under Executive Order No. 2
+   (s. 2016) is a legitimate route, filed at <https://www.foi.gov.ph/>.
+3. Leave the page as a stub until a record arrives. An empty page is a correct
+   page.
 
 ## When something is wrong
 
