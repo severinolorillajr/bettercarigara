@@ -8,7 +8,7 @@ const Home: React.FC = () => {
     <>
       <SEO
         title="Home"
-        description="Official website of your local government. Access government services, information, and resources."
+        description="Community-built transparency portal for Carigara, Leyte. Find local government services, departments, budgets and contacts in one place."
         keywords="government, local government, services, public services, civic services"
       />
       <main className="flex-grow">

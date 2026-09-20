@@ -54,6 +54,9 @@ See [CONTENT-MANAGEMENT.md](CONTENT-MANAGEMENT.md) for a step-by-step guide that
 assumes no technical background, and [CONTENT-GUIDE.md](CONTENT-GUIDE.md) for
 writing standards.
 
+Before adding anything, read [SOURCES.md](SOURCES.md) — where this project's
+data comes from, and the rule every published figure follows.
+
 **Accuracy rule:** every figure, name and contact detail needs a public source —
 an LGU posting, a COA report, an ordinance, or an official page. If you cannot
 source it, leave it out. A wrong office number is worse than a missing one.
