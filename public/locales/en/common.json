@@ -1,9 +1,9 @@
 {
-  "site_name": "Lapu Lapu City Portal",
-  "site_description": "A community-run portal for the Lapu Lapu City",
+  "site_name": "Better Carigara",
+  "site_description": "Community transparency portal — not an official LGU website",
   "hero": {
-    "title": "Welcome to BetterGov.ph",
-    "subtitle": "A community-run portal to find information of the Lapu Lapu City Government",
+    "title": "Welcome to Carigara",
+    "subtitle": "Local government information for Carigara, Leyte — in one place, in plain language.",
     "nationalId": "National ID",
     "birthCertificate": "Birth Certificate",
     "businessRegistration": "Business Registration"
@@ -29,7 +29,7 @@
     "title": "Latest News & Updates"
   },
   "footer": {
-    "copyright": "© 2025 BetterGov. All content is public domain unless otherwise specified."
+    "copyright": "© 2026 Better Carigara — a community project, not an official website of the Municipality of Carigara."
   },
   "navbar": {
     "government": "Government",

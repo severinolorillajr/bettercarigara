@@ -1,4 +1,6 @@
 {
+  "site_name": "Better Carigara",
+  "site_description": "Community transparency portal — not an official LGU website",
   "common": {
     "welcome": "Welcome",
     "home": "Home",
