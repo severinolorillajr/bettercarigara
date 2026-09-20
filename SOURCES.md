@@ -33,9 +33,13 @@ documents each quarter. They are collected at:
 
 **<https://fdpp.dilg.gov.ph/fdpp/report>**
 
-No account is needed — the login box on the front page is for LGU staff who
-upload. Filter by document type, region, province, LGU and year. Carigara is
-under **REGION VIII - EASTERN VISAYAS**, province of **Leyte**.
+**Caveat, checked 2026-09-20:** the filter page renders without logging in, but
+its province and city/municipality dropdowns load over AJAX from endpoints that
+redirect to the login page (HTTP 302) for an anonymous visitor. So the cascade
+that narrows to a single LGU does not currently work logged out, even though the
+portal FAQ says the public may view disclosed documents. If you hit this, it is
+the portal, not you. Options: register an account, ask DILG Region VIII directly,
+or file an FOI request (see below).
 
 Document types available through that filter:
 
