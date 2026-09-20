@@ -13,13 +13,17 @@ Directory entry: `Carigara, Leyte` in [jmacj/better-lgu-directory](https://githu
 
 ## Status
 
-🟡 **Work in progress** — scaffolded from the starter kit, content not yet
-populated. Nothing here should be treated as accurate until this section says
-otherwise.
+🟡 **Work in progress** — the officials and municipality profile are published
+and sourced. Service pages are still stubs. Every published page carries its
+sources and a retrieval date; anything not yet verified says so on the page
+rather than being filled in with a guess.
 
 Before launch:
 
-- [ ] Verify and fill in officials (mayor, vice mayor, SB members, department heads)
+- [x] Mayor, Vice Mayor and Sangguniang Bayan members (2025-2028 term)
+- [x] Municipality profile — population, land area, barangays, income class
+- [ ] Department heads
+- [ ] Second source for the 2024 population figure
 - [ ] Add office contact details, locations and hours
 - [ ] Publish budget and expenditure data (COA / DBM Open Data)
 - [ ] Publish ongoing and completed projects

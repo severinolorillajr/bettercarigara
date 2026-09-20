@@ -4,7 +4,10 @@
 pages:
   - name: 'Executive'
     slug: 'executive'
-    description: "Find out about your Mayor and Vice Mayor, including upcoming events, the Mayor's Community Assistance Program, mayoral history, and information about other historic roles in the local government unit."
+    description: 'The Mayor and Vice Mayor of Carigara, their offices, and how to reach them.'
   - name: 'Legislative'
     slug: 'legislative'
-    description: 'The Sangguniang Bayan (Municipal Council) is the legislative body of the municipality, presided over by the Vice Mayor. Its current composition has not yet been verified for this site.'
+    description: 'The Sangguniang Bayan (Municipal Council) is the legislative body of the municipality, presided over by the Vice Mayor. Members elected for the 2025-2028 term.'
+  - name: 'Carigara at a glance'
+    slug: 'municipality-profile'
+    description: 'Population, land area, barangays and income class — with the source behind every figure.'

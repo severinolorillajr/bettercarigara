@@ -12,19 +12,14 @@ and assumes the Mayor's duties as Acting Mayor when the Mayor is unable to serve
 
 ## Current officeholders
 
-_Not yet published._
+| Office     | Name         | Party  |
+| ---------- | ------------ | ------ |
+| Mayor      | {MAYOR}      | NPC    |
+| Vice Mayor | {VICE_MAYOR} | Tingog |
 
-This site does not yet name the incumbent Mayor, Vice Mayor or members of the
-Sangguniang Bayan. They are a matter of public record, but publishing them here
-without checking them against a public source is how wrong information spreads,
-so the page stays blank until each name is verified.
-
-**Where to source it:** COMELEC results for the most recent local elections, the
-DILG local government profile for Carigara, and the municipality's own
-announcements. Cross-check at least two.
-
-See [SOURCES.md](SOURCES.md) for the full sourcing rule, and the repository
-README for how to contribute a correction.
+Both were elected at the **{YEAR_ELECTED} National and Local Elections** for the
+2025–2028 term. In the mayoral race, {MAYOR} received 20,673 votes; {VICE_MAYOR}
+received 18,709 votes for Vice Mayor.
 
 ---
 
@@ -32,5 +27,24 @@ README for how to contribute a correction.
 
 _Not yet published._
 
-Office address, telephone number, email and hours will appear here once verified.
-A wrong office number is worse than a missing one.
+The office address, telephone number, email and opening hours are not listed here
+because they have not been verified against a public source. A wrong office
+number is worse than a missing one.
+
+If you know them, see the repository README — a correction is the most useful
+contribution this site takes.
+
+---
+
+**Sources**
+
+- [Carigara, Leyte 2025 election results](https://ph.rappler.com/elections/2025/local-race/leyte/carigara)
+  — Rappler, from the COMELEC Media Server transparency feed, 100.00% of precincts
+  reporting as of 15 May 2025. Retrieved 2026-09-20.
+- [Carigara](https://en.wikipedia.org/wiki/Carigara) — Wikipedia, for the officials'
+  full names as spelled in the municipal infobox. Retrieved 2026-09-20.
+
+The COMELEC transparency feed publishes partial, unofficial counts. These results
+were reported at 100% of precincts and match the names carried elsewhere, but they
+are not the official canvass. If you can point to the COMELEC Certificate of
+Canvass, please open an issue so this note can be replaced with it.
