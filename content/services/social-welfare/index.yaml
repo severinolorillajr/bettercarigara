@@ -2,18 +2,18 @@
 # This file contains all the pages/services available under the Social Welfare category
 
 pages:
-  - name: 'Apply for senior citizen, solo parent, or PWD assistance'
+  - name: 'Apply for a senior citizen, solo parent or PWD ID'
     slug: 'apply-for-senior-citizen-solo-parent-or-pwd-assistance'
-    description: 'Information about applying for assistance programs for senior citizens, solo parents, and persons with disabilities.'
-    
+    description: 'PWD, senior citizen and solo parent IDs and purchase booklets, and the RA 11982 cash gift at 80, 85, 90, 95 and 100 — free, same day.'
+
   - name: 'Receive relief goods or cash aid during disasters'
     slug: 'receive-relief-goods-or-cash-aid-during-disasters'
     description: 'How to access relief goods and cash assistance during natural disasters and emergencies.'
-    
-  - name: 'Join livelihood or skills training programs'
+
+  - name: 'Join a livelihood, TUPAD or skills training programme'
     slug: 'join-livelihood-or-skills-training-programs'
-    description: 'Participate in livelihood and skills training programs offered by your local government.'
-    
-  - name: 'Get family and community welfare support'
+    description: 'PESO referrals to DOLE livelihood funding (DILP), TUPAD temporary work, and TESDA or DICT skills training.'
+
+  - name: 'Get help in a crisis, a certificate of indigency or a case study'
     slug: 'get-family-and-community-welfare-support'
-    description: 'Access family and community welfare support services from your local government.'
+    description: 'AICS cash help for medical, burial, transport and food needs, PWD financial assistance, certificates of indigency and social case study reports.'
