@@ -5,15 +5,19 @@ pages:
   - name: 'Get free check-ups, basic medicines, and vaccines'
     slug: 'get-free-check-ups-basic-medicines-and-vaccines'
     description: 'Access free medical check-ups, basic medicines, and vaccination services provided by your local government.'
-    
-  - name: 'Access maternal care and child immunization'
+
+  - name: 'Get your baby vaccinated, pregnancy check-ups and family planning'
     slug: 'access-maternal-care-and-child-immunization'
-    description: 'Information about maternal health services and child immunization programs available in your area.'
-    
+    description: 'Free vaccines for babies 0–11 months, pre-natal and post-natal check-ups, and family planning at your barangay health station.'
+
+  - name: 'Get a medical or medico-legal certificate'
+    slug: 'get-a-medical-or-medico-legal-certificate'
+    description: 'Medical certificates for work, school or food handling, and medico-legal certificates — requirements and the ₱50 fee.'
+
   - name: 'Go to the local hospital for treatment or confinement'
     slug: 'go-to-the-local-hospital-for-treatment-or-confinement'
     description: 'Details about local hospital services, treatment options, and confinement procedures.'
-    
+
   - name: 'Join health programs (nutrition, dengue control, TB treatment)'
     slug: 'join-health-programs-nutrition-dengue-control-tb-treatment'
     description: 'Participate in various health programs including nutrition support, dengue control, and TB treatment initiatives.'

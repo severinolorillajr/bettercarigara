@@ -2,14 +2,22 @@
 # This file contains all the pages/services available under the Disaster Preparedness category
 
 pages:
-  - name: 'Join disaster drills and evacuation planning'
+  - name: 'Call for emergency medical help or patient transport'
+    slug: 'call-for-emergency-medical-help-or-patient-transport'
+    description: 'MDRRMO emergency numbers, ambulance response times, and free patient transport to hospitals in Palo, Tacloban and Ormoc.'
+
+  - name: 'Ask the MDRRMO to run a disaster training or drill'
     slug: 'join-disaster-drills-and-evacuation-planning'
-    description: 'Information about participating in disaster drills and evacuation planning activities.'
-    
+    description: 'Request free MDRRMO trainers for disaster trainings, seminars, orientations and emergency drills.'
+
+  - name: 'Get an MDRRMO certification or report'
+    slug: 'get-a-drrm-certification-or-report'
+    description: 'Free certifications and reports from the MDRRMO for insurance claims and other legal purposes.'
+
   - name: 'Learn about emergency response procedures and evacuation routes'
     slug: 'learn-about-emergency-response-procedures-and-evacuation-routes'
     description: 'Details about emergency response procedures and evacuation routes in your area.'
-    
+
   - name: 'Access disaster preparedness information and early warning systems'
     slug: 'access-disaster-preparedness-information-and-early-warning-systems'
     description: 'How to access disaster preparedness information and early warning systems.'
