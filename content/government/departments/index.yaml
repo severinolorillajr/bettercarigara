@@ -26,3 +26,6 @@ pages:
   - name: 'Request a meeting with the Mayor, or a letter from the Mayor’s Office'
     slug: 'meet-the-mayor'
     description: 'Meetings and courtesy calls, plus job recommendations, referrals and endorsement letters.'
+  - name: 'Mandate, vision and mission'
+    slug: 'mandate-vision-and-mission'
+    description: 'The municipal government’s mandate, vision, mission and service pledge, as published in its Citizen’s Charter.'

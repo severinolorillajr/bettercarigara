@@ -18,6 +18,20 @@ import SEO from '../components/SEO';
 const REPO = 'https://github.com/severinolorillajr/bettercarigara';
 const ISSUES = `${REPO}/issues/new`;
 const PROFILE = '/government/departments/municipality-profile';
+const MANDATE = '/government/departments/mandate-vision-and-mission';
+
+// Verbatim from content/government/departments/mandate-vision-and-mission.md —
+// change them there first, then here.
+const LGU_STATEMENTS = [
+  {
+    title: 'Vision',
+    text: 'CARIGARA is center of competitive trade and industry in the Northern part of Leyte with empowered and God-loving citizenry enjoying a self-sufficient local economy in an ecologically-balanced environment with quality and essential support infrastructure under a transparent, accountable, responsive, committed, and competent leadership.',
+  },
+  {
+    title: 'Mission',
+    text: 'The Local Governance of Carigara in partnership with the people shall provide development opportunities, ensure public safety and proper management of resources, promote programs for economic and political stability and create a venue for socio-cultural upliftment towards the attainment of quality of life for Kalgaran-ons.',
+  },
+];
 
 // Figures from content/government/departments/municipality-profile.md —
 // change them there first, then here.
@@ -195,6 +209,34 @@ export default function About() {
           className="mt-6 inline-block font-semibold text-primary-600 hover:text-primary-700"
         >
           Full profile, census history and the 49 barangays →
+        </Link>
+
+        <h3 className="mt-12 mb-4 text-xl font-bold">
+          The municipal government, in its own words
+        </h3>
+        <div className="grid gap-4 md:grid-cols-2">
+          {LGU_STATEMENTS.map(({ title, text }) => (
+            <figure
+              key={title}
+              className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm"
+            >
+              <figcaption className="mb-2 font-semibold text-gray-900">
+                {title}
+              </figcaption>
+              <blockquote className="text-sm text-gray-600">
+                “{text}”
+              </blockquote>
+            </figure>
+          ))}
+        </div>
+        <p className="mt-3 text-xs text-gray-500">
+          Quoted from the LGU Carigara Citizen's Charter 2026, pp. II–III.
+        </p>
+        <Link
+          to={MANDATE}
+          className="mt-4 inline-block font-semibold text-primary-600 hover:text-primary-700"
+        >
+          Mandate, vision, mission and service pledge →
         </Link>
       </section>
 
