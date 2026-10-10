@@ -43,20 +43,20 @@ Online, you upload each one; at the counter you hand over the originals, except
 where a photocopy is noted. Unlike a new application, renewal does **not** ask
 for an occupancy permit, but it does ask for proof of what you earned.
 
-| Document                                                                 | Where to get it                                                                   |
-| ------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
-| Unified Business Permit Application Form                                 | Online after registering on the iBPLS portal, or at the BOSS area                 |
-| Approved barangay clearance                                              | The barangay where the business operates                                          |
-| Community Tax Certificate (cedula)                                       | Municipal Treasurer's Office                                                      |
-| Proof of business registration                                           | DTI (sole proprietors), SEC (corporations and partnerships), CDA (cooperatives)   |
-| BIR Certificate of Registration                                          | Bureau of Internal Revenue                                                        |
-| Contract of lease — or affidavit of no rental, or the owner's consent    | Your landlord or the property owner. If you own the property, its tax declaration |
-| Latest real property tax payment for the business location (photocopy)   | Municipal Treasurer's Office                                                      |
-| Real property tax declaration (photocopy)                                | Municipal Treasurer's Office                                                      |
-| **Basis for computing the tax** — one of the three below                 | See below                                                                         |
-| Market clearance — **public market vendors only**                        | Office of Market and Slaughter                                                    |
-| Special power of attorney, notarised — **only if you are not the owner** | You                                                                               |
-| Government-issued photo ID (photocopy)                                   | With an SPA, bring IDs for both the owner and the representative                  |
+| Document                                                                 | Where to get it                                                                                                               |
+| ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| Unified Business Permit Application Form                                 | Online after registering on the iBPLS portal, or at the BOSS area                                                             |
+| Approved barangay clearance                                              | The barangay where the business operates                                                                                      |
+| Community Tax Certificate (cedula)                                       | Municipal Treasurer's Office                                                                                                  |
+| Proof of business registration                                           | DTI (sole proprietors), SEC (corporations and partnerships), CDA (cooperatives)                                               |
+| BIR Certificate of Registration                                          | Bureau of Internal Revenue                                                                                                    |
+| Contract of lease — or affidavit of no rental, or the owner's consent    | Your landlord or the property owner. If you own the property, its tax declaration                                             |
+| Latest real property tax payment for the business location (photocopy)   | Municipal Treasurer's Office                                                                                                  |
+| Real property tax declaration (photocopy)                                | Municipal Assessor's Office — see [Get or update a tax declaration](/services/taxes-property/get-or-update-a-tax-declaration) |
+| **Basis for computing the tax** — one of the three below                 | See below                                                                                                                     |
+| Market clearance — **public market vendors only**                        | Office of Market and Slaughter                                                                                                |
+| Special power of attorney, notarised — **only if you are not the owner** | You                                                                                                                           |
+| Government-issued photo ID (photocopy)                                   | With an SPA, bring IDs for both the owner and the representative                                                              |
 
 The basis for computing the tax is one of:
 

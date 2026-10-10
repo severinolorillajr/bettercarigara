@@ -53,20 +53,20 @@ receipt, since it is what proves when the clock started.
 For a **new** business. Online, you upload each one; at the BOSS counter you
 hand over the originals, except where a photocopy is noted.
 
-| Document                                                                 | Where to get it                                                                   |
-| ------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
-| Unified Business Permit Application Form                                 | Online after registering on the iBPLS portal, or at the BOSS area                 |
-| Approved barangay clearance                                              | Your barangay (Step 1)                                                            |
-| Occupancy permit                                                         | Office of the Building Official                                                   |
-| Community Tax Certificate (cedula)                                       | Municipal Treasurer's Office                                                      |
-| Proof of business registration                                           | DTI (sole proprietors), SEC (corporations and partnerships), CDA (cooperatives)   |
-| BIR Certificate of Registration                                          | Bureau of Internal Revenue                                                        |
-| Contract of lease — or affidavit of no rental, or the owner's consent    | Your landlord or the property owner. If you own the property, its tax declaration |
-| Latest real property tax payment for the business location (photocopy)   | Municipal Treasurer's Office                                                      |
-| Real property tax declaration (photocopy)                                | Municipal Treasurer's Office                                                      |
-| Market clearance — **public market vendors only**                        | Office of Market and Slaughter                                                    |
-| Special power of attorney, notarised — **only if you are not the owner** | You                                                                               |
-| Government-issued photo ID (photocopy)                                   | With an SPA, bring IDs for both the owner and the representative                  |
+| Document                                                                 | Where to get it                                                                                                               |
+| ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| Unified Business Permit Application Form                                 | Online after registering on the iBPLS portal, or at the BOSS area                                                             |
+| Approved barangay clearance                                              | Your barangay (Step 1)                                                                                                        |
+| Occupancy permit                                                         | Office of the Building Official                                                                                               |
+| Community Tax Certificate (cedula)                                       | Municipal Treasurer's Office                                                                                                  |
+| Proof of business registration                                           | DTI (sole proprietors), SEC (corporations and partnerships), CDA (cooperatives)                                               |
+| BIR Certificate of Registration                                          | Bureau of Internal Revenue                                                                                                    |
+| Contract of lease — or affidavit of no rental, or the owner's consent    | Your landlord or the property owner. If you own the property, its tax declaration                                             |
+| Latest real property tax payment for the business location (photocopy)   | Municipal Treasurer's Office                                                                                                  |
+| Real property tax declaration (photocopy)                                | Municipal Assessor's Office — see [Get or update a tax declaration](/services/taxes-property/get-or-update-a-tax-declaration) |
+| Market clearance — **public market vendors only**                        | Office of Market and Slaughter                                                                                                |
+| Special power of attorney, notarised — **only if you are not the owner** | You                                                                                                                           |
+| Government-issued photo ID (photocopy)                                   | With an SPA, bring IDs for both the owner and the representative                                                              |
 
 **If you sell food**, you will also need a **sanitary permit** from the
 Municipal Health Office. Food establishments need a stool exam, HBsAg test and
