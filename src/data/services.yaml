@@ -64,3 +64,8 @@ categories:
     description: 'How to apply for housing projects, what zoning and building permits are needed, and where relocation sites are available.'
     icon: 'Home'
   
+  # Civil Registry Services
+  - category: 'Civil Registry'
+    slug: 'civil-registry'
+    description: 'Register a birth, marriage or death, get copies of certificates, and correct errors in civil registry records.'
+    icon: 'FileText'

@@ -1,0 +1,27 @@
+# Civil Registry Category Pages
+# This file contains all the pages/services available under the Civil Registry category
+
+pages:
+  - name: 'Register a birth'
+    slug: 'register-a-birth'
+    description: 'Register a newborn within 30 days — requirements, steps and fees at the Municipal Civil Registrar.'
+
+  - name: 'Register a birth late'
+    slug: 'register-a-birth-late'
+    description: 'Late registration for anyone whose birth was never registered, including the free Birth Registration Assistance Project.'
+
+  - name: 'Get a marriage license and register your marriage'
+    slug: 'get-a-marriage-license-and-register-your-marriage'
+    description: 'Marriage license requirements, the 10-day posting, pre-marriage counselling, and registering the marriage afterwards.'
+
+  - name: 'Register a death and arrange a burial'
+    slug: 'register-a-death-and-arrange-a-burial'
+    description: 'Registering a death, the burial permit, and fees at the Municipal Cemetery.'
+
+  - name: 'Get copies of birth, marriage and death certificates'
+    slug: 'get-copies-of-birth-marriage-and-death-certificates'
+    description: 'Local copies from the Civil Registrar, and PSA copies and CENOMAR requested through the same office.'
+
+  - name: 'Correct or update a civil registry record'
+    slug: 'correct-or-update-a-civil-registry-record'
+    description: "Fix a clerical error, change a first name, birth day or month, or sex, add missing entries, use the father's surname, or legitimate a child."
