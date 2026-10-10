@@ -2,14 +2,18 @@
 # This file contains all the pages/services available under the Housing & Land Use category
 
 pages:
-  - name: 'Apply for socialized housing or relocation projects'
-    slug: 'apply-for-socialized-housing-or-relocation-projects'
-    description: 'Information about applying for socialized housing and relocation projects from your local government.'
-    
-  - name: 'Request zoning, land use, or building permits'
+  - name: 'Get a building permit'
+    slug: 'get-a-building-permit'
+    description: 'From zoning clearance to building permit, electrical permit and certificate of occupancy, plus fencing permits.'
+
+  - name: 'Get a zoning clearance or land use certification'
     slug: 'request-zoning-land-use-or-building-permits'
-    description: 'How to request zoning, land use, and building permits from your local government.'
-    
+    description: 'Every MPDO zoning certification — building, fencing, titling, ECC, survey, reclassification, special use — with fees and times.'
+
+  - name: 'Get a certificate as a housing program beneficiary'
+    slug: 'apply-for-socialized-housing-or-relocation-projects'
+    description: 'The certificate Ecoville, Vergabriel Heights and NHA Carigara Housing Project beneficiaries need for water and electric connections.'
+
   - name: 'Ask about available relocation sites in case of demolition'
     slug: 'ask-about-available-relocation-sites-in-case-of-demolition'
     description: 'Information about available relocation sites in case of demolition or displacement.'
