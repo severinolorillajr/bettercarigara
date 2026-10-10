@@ -1,0 +1,23 @@
+# Jobs & Employment Category Pages
+# This file contains all the pages/services available under the Jobs & Employment category
+
+pages:
+  - name: 'Apply for a job at the municipality'
+    slug: 'apply-for-a-job-at-the-municipality'
+    description: 'Job order, casual and plantilla (regular) positions at LGU Carigara — requirements, steps and timelines at the HRMO.'
+
+  - name: 'Apply for an internship or OJT'
+    slug: 'apply-for-an-internship-or-ojt'
+    description: 'On-the-job training for senior high and college students, the Government Internship Program, and SPES student employment.'
+
+  - name: 'Find a job through PESO'
+    slug: 'find-a-job-through-peso'
+    description: "Job referral and placement, job fairs, recruitment activities, the Mayor's recommendation letter, and PESO services for employers."
+
+  - name: 'Get help as an OFW'
+    slug: 'get-help-as-an-ofw'
+    description: 'An endorsement from the OFW Help Desk to OWWA or the DMW, for OFWs, former OFWs and their beneficiaries.'
+
+  - name: 'Request a service record or employment certificate'
+    slug: 'request-a-service-record-or-employment-certificate'
+    description: 'For former and retired municipal employees — a written request, no fee, about three days.'

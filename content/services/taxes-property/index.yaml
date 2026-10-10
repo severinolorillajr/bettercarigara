@@ -1,0 +1,19 @@
+# Taxes & Property Category Pages
+# This file contains all the pages/services available under the Taxes & Property category
+
+pages:
+  - name: 'Get a community tax certificate (cedula)'
+    slug: 'get-a-community-tax-certificate-cedula'
+    description: 'Who must pay, what to bring, and the rates for individuals and corporations at the Municipal Treasurer.'
+
+  - name: 'Pay real property tax'
+    slug: 'pay-real-property-tax'
+    description: 'The 2% rate, the 20% advance-payment discount, late penalties, and what a demand letter or notice of delinquency means.'
+
+  - name: 'Get a tax clearance'
+    slug: 'get-a-tax-clearance'
+    description: 'Proof your property tax is fully paid, needed to sell or transfer property — ₱90 at the Municipal Treasurer.'
+
+  - name: 'Get or update a tax declaration'
+    slug: 'get-or-update-a-tax-declaration'
+    description: 'Certified copies, transfers and revisions, and appraisal of new buildings and machinery at the Municipal Assessor.'

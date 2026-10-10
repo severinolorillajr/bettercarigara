@@ -69,3 +69,15 @@ categories:
     slug: 'civil-registry'
     description: 'Register a birth, marriage or death, get copies of certificates, and correct errors in civil registry records.'
     icon: 'FileText'
+
+  # Jobs & Employment Services
+  - category: 'Jobs & Employment'
+    slug: 'jobs-employment'
+    description: 'Apply for jobs at the municipality, internships, and job referral, job fairs and employment programs through PESO.'
+    icon: 'Briefcase'
+
+  # Taxes & Property Services
+  - category: 'Taxes & Property'
+    slug: 'taxes-property'
+    description: 'Community tax certificates, real property tax, tax clearances and tax declarations.'
+    icon: 'Landmark'

@@ -43,6 +43,8 @@ import environmentIndex from '../../content/services/environment/index.yaml?raw'
 import disasterPreparednessIndex from '../../content/services/disaster-preparedness/index.yaml?raw';
 import housingLandUseIndex from '../../content/services/housing-land-use/index.yaml?raw';
 import civilRegistryIndex from '../../content/services/civil-registry/index.yaml?raw';
+import jobsEmploymentIndex from '../../content/services/jobs-employment/index.yaml?raw';
+import taxesPropertyIndex from '../../content/services/taxes-property/index.yaml?raw';
 import governmentDepartmentsIndex from '../../content/government/departments/index.yaml?raw';
 import governmentDepartmentsLegislativeIndex from '../../content/government/departments/legislative/index.yaml?raw';
 
@@ -59,6 +61,8 @@ const categoryIndexMap: { [key: string]: string } = {
   'disaster-preparedness': disasterPreparednessIndex,
   'housing-land-use': housingLandUseIndex,
   'civil-registry': civilRegistryIndex,
+  'jobs-employment': jobsEmploymentIndex,
+  'taxes-property': taxesPropertyIndex,
   departments: governmentDepartmentsIndex,
   legislative: governmentDepartmentsLegislativeIndex,
 };
