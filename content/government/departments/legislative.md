@@ -52,11 +52,31 @@ verified.
 
 ---
 
+## Contact
+
+|         |                                                                        |
+| ------- | ---------------------------------------------------------------------- |
+| Office  | Sangguniang Bayan Office                                               |
+| Address | Legislative Building, Eduardo Makabenta St., Barangay Ponong, Carigara |
+| Phone   | (053) 530 5144                                                         |
+| Email   | sangguniangbayancarigara@gmail.com                                     |
+| Hours   | Not published in the charter                                           |
+
+For copies of ordinances, CSO accreditation and complaints, see
+[Sangguniang Bayan services](/government/departments/sangguniang-bayan-services).
+
+---
+
 **Sources**
 
 - [Carigara, Leyte 2025 election results](https://ph.rappler.com/elections/2025/local-race/leyte/carigara)
   — Rappler, from the COMELEC Media Server transparency feed, 100.00% of precincts
   reporting as of 15 May 2025. Retrieved 2026-09-20.
+- LGU Carigara Citizen's Charter 2026, Revised 2nd Edition, p. 332 (office
+  directory), for the Sangguniang Bayan Office contact details. Shared by the
+  Human Resource Management Office – LGU Carigara Facebook page on 2026-10-06
+  ([Google Drive](https://drive.google.com/file/d/1EapQs5yUxjG8LqlXJ2f6MTpmZPC9cl5-/view)).
+  Retrieved 2026-10-07.
 
 **Please help verify this page.** The councilor names above come from the COMELEC
 transparency feed, which publishes partial and unofficial counts, and vote
