@@ -1,0 +1,70 @@
+# LGU Carigara office directory.
+# Source: "LGU CARIGARA CONTACT NUMBERS" directory graphic posted by the
+# LGU Carigara Facebook page on 2025-02-13. Transcribed 2026-10-10.
+# Office names are as printed; numbers are exactly as printed.
+# `emergency: <short label>` puts the office first, in red, and in the
+# top-of-page call strip. Entries from another source carry `source:`.
+source:
+  label: LGU Carigara Facebook page, directory post of 13 February 2025
+  retrieved: '2026-10-10'
+offices:
+  - name: Municipal Disaster Risk Reduction & Management Office (MDRRMO)
+    phones: ['0949-860-8899', '0927-908-6881']
+    emergency: MDRRMO
+  - name: Carigara Fire Station (Bureau of Fire Protection)
+    phones: ['0931-730-9311']
+    email: carigara_firestation@yahoo.com.ph
+    emergency: Fire
+    source: Carigara Fire Station North Leyte Facebook page, retrieved 2026-10-10
+  - name: Mayor's Office
+    phones: ['(053) 888-2903']
+  - name: Municipal Administrator's Office
+    phones: ['0918-907-5919']
+  - name: Business Permits & Licensing Office
+    phones: ['0946-716-0683']
+  - name: Municipal Health Office
+    phones: ['(053) 888-2773']
+  - name: Municipal Social Welfare & Development Office
+    phones: ['0917-129-2532']
+  - name: Municipal Civil Registrar's Office
+    phones: ['0912-610-6088']
+  - name: Municipal Agriculture's Office
+    phones: ['(053) 888-2817']
+  - name: Municipal Treasurer's Office
+    phones: ['(053) 888-2856']
+  - name: Municipal Planning & Development Office
+    phones: ['(053) 888-2876']
+  - name: Municipal Assessor's Office
+    phones: ['0939-344-6931']
+  - name: PhilHealth Office
+    phones: ['(053) 888-2769']
+  - name: Sangguniang Bayan Office
+    phones: ['(053) 530-5144']
+  - name: Human Resource Management Office
+    phones: ['(053) 839-7697']
+  - name: Municipal Accounting Office
+    phones: ['(053) 888-2826']
+  - name: Municipal Budget Office
+    phones: ['(053) 888-2787']
+  - name: Municipal Engineering Office
+    phones: ['0961-894-3358']
+  - name: Persons with Disabilities Affairs Office
+    phones: ['0961-464-7899']
+  - name: Office of Senior Citizens Affairs
+    phones: ['0906-686-3466']
+  - name: Negosyo Center (DTI)
+    phones: ['0939-517-1205']
+  - name: Barangay Affairs Office
+    phones: ['0917-110-4036']
+  - name: Carigara Traffic Enforcement & Management Office
+    phones: ['0907-447-2646']
+  - name: Municipal Tourism Office
+    phones: ['(053) 888-2876']
+  - name: Market & Slaughterhouse Office
+    phones: ['0955-655-0691']
+  - name: Municipal Environment and Natural Resources Office
+    phones: ['(053) 888-2876']
+  - name: Public Employment Service Office
+    phones: ['(053) 839-7697']
+  - name: Municipal Cooperative Development Office
+    phones: ['0946-716-0683']

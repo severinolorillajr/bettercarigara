@@ -6,7 +6,9 @@ import {
   Globe,
   Search,
   CheckCircle2,
+  Phone,
 } from 'lucide-react';
+import { directory, telHref } from '../../data/directory';
 import { mainNavigation } from '../../data/navigation';
 import type { LanguageType } from '../../types/index';
 import { Link } from 'react-router';
@@ -43,7 +45,27 @@ const Navbar: React.FC = () => {
     <nav className="bg-white shadow-sm sticky top-0 z-50">
       {/* Top bar with language switcher and additional links */}
       <div className="border-b border-gray-200">
-        <div className="container mx-auto px-4 flex justify-end items-center h-10">
+        <div className="container mx-auto px-4 flex justify-between items-center h-10 gap-4">
+          <div className="flex items-center gap-3 text-xs font-semibold whitespace-nowrap overflow-x-auto">
+            <a
+              href="tel:911"
+              className="inline-flex items-center gap-1 rounded-full bg-red-600 px-2.5 py-0.5 text-white hover:bg-red-700"
+            >
+              <Phone className="h-3 w-3" aria-hidden />
+              Emergency 911
+            </a>
+            {directory.offices
+              .filter(o => o.emergency)
+              .map(o => (
+                <a
+                  key={o.name}
+                  href={telHref(o.phones[0])}
+                  className="text-red-700 hover:underline"
+                >
+                  {o.emergency} {o.phones[0]}
+                </a>
+              ))}
+          </div>
           <div className="flex items-center space-x-4">
             <a
               href="https://bettergov.ph/join-us"
