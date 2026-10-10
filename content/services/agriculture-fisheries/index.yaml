@@ -2,18 +2,26 @@
 # This file contains all the pages/services available under the Agriculture & Fisheries category
 
 pages:
-  - name: 'Ask for free seeds, seedlings, fertilizers, or fingerlings'
+  - name: 'Get free rice seeds, fertilizer and vegetable seedlings'
     slug: 'ask-for-free-seeds-seedlings-fertilizers-or-fingerlings'
-    description: 'How to request free agricultural inputs like seeds, seedlings, fertilizers, and fingerlings from your local government.'
-    
-  - name: 'Get veterinary services for livestock'
+    description: 'Free rice seeds and fertilizer for RSBSA-registered farmers, with crop insurance sign-up, and free vegetable seedlings from the Municipal Agriculture Office.'
+
+  - name: 'Get your dog vaccinated against rabies'
     slug: 'get-veterinary-services-for-livestock'
-    description: 'Access veterinary services for your livestock and farm animals from local government veterinarians.'
-    
+    description: 'Free anti-rabies vaccination for dogs at the Municipal Agriculture Office or the yearly barangay drive.'
+
   - name: 'Attend farming or fishing training'
     slug: 'attend-farming-or-fishing-training'
     description: 'Join training programs for farming and fishing techniques offered by your local government.'
-    
-  - name: 'Borrow farm tools or equipment from the LGU'
+
+  - name: 'Rent a farm tractor from the Municipal Agriculture Office'
     slug: 'borrow-farm-tools-or-equipment-from-the-lgu'
-    description: 'How to borrow farm tools and equipment from your local government unit.'
+    description: 'Tractor service for land preparation at ₱750 an hour, after a field inspection, first come, first served.'
+
+  - name: 'Get help with crop pests, soil testing and insurance'
+    slug: 'get-help-with-crop-pests-soil-testing-and-insurance'
+    description: 'Free field visits for pests and disease, soil analysis with a fertilizer recommendation, and PCIC crop, livestock and fisheries insurance.'
+
+  - name: 'Use the municipal slaughterhouse'
+    slug: 'use-the-municipal-slaughterhouse'
+    description: "Requirements, steps and per-head fees for slaughtering cattle, carabao and swine, and renewing a butcher's permit."
