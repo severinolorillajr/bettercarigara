@@ -8,6 +8,7 @@ import Services from './pages/Services';
 import Document from './pages/Document';
 import Government from './pages/Government';
 import Search from './pages/Search';
+import About from './pages/About';
 import { isMeilisearchEnabled } from './lib/meilisearch';
 import { BrowserRouter as Router, Routes, Route } from 'react-router';
 
@@ -29,6 +30,7 @@ function App() {
               />
               <Route path="/government/:category" element={<Government />} />
               <Route path="/government" element={<Government />} />
+              <Route path="/about" element={<About />} />
               <Route
                 path="/government/:category/:documentSlug"
                 element={<Document categoryType="government" />}
