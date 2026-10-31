@@ -25,6 +25,10 @@ export const mainNavigation: NavigationItem[] = [
     label: 'Government',
     href: '/government/departments',
   },
+  {
+    label: 'Budget',
+    href: '/budget',
+  },
 ];
 
 export const footerNavigation = {
@@ -57,6 +61,7 @@ export const footerNavigation = {
     {
       title: 'Government',
       links: [
+        { label: 'Budget 2027', href: '/budget' },
         { label: 'Open Data', href: 'https://data.gov.ph' },
         { label: 'Freedom of Information', href: 'https://www.foi.gov.ph' },
         {
