@@ -301,8 +301,7 @@ export default function About() {
             </p>
             <p>
               For official transactions and information, contact the
-              Municipality of Carigara directly — see the directory at the
-              bottom of this page.
+              Municipality of Carigara directly.
             </p>
           </div>
         </div>

@@ -46,25 +46,38 @@ const Navbar: React.FC = () => {
       {/* Top bar with language switcher and additional links */}
       <div className="border-b border-gray-200">
         <div className="container mx-auto px-4 flex justify-between items-center h-10 gap-4">
-          <div className="flex items-center gap-3 text-xs font-semibold whitespace-nowrap overflow-x-auto">
-            <a
-              href="tel:911"
-              className="inline-flex items-center gap-1 rounded-full bg-red-600 px-2.5 py-0.5 text-white hover:bg-red-700"
-            >
-              <Phone className="h-3 w-3" aria-hidden />
-              Emergency 911
-            </a>
-            {directory.offices
-              .filter(o => o.emergency)
-              .map(o => (
-                <a
-                  key={o.name}
-                  href={telHref(o.phones[0])}
-                  className="text-red-700 hover:underline"
+          <div className="min-w-0 flex-1 overflow-hidden text-xs font-semibold whitespace-nowrap motion-reduce:overflow-x-auto">
+            {/* Two identical copies scroll by half their width, so the
+                ticker loops without a gap. The second copy is inert. */}
+            <div className="flex w-max animate-ticker hover:[animation-play-state:paused] focus-within:[animation-play-state:paused] motion-reduce:animate-none">
+              {[false, true].map(copy => (
+                <div
+                  key={String(copy)}
+                  className="flex shrink-0 items-center gap-3 pr-6"
+                  aria-hidden={copy || undefined}
+                  inert={copy}
                 >
-                  {o.emergency} {o.phones[0]}
-                </a>
+                  <a
+                    href="tel:911"
+                    className="inline-flex items-center gap-1 rounded-full bg-red-600 px-2.5 py-0.5 text-white hover:bg-red-700"
+                  >
+                    <Phone className="h-3 w-3" aria-hidden />
+                    Emergency 911
+                  </a>
+                  {directory.offices
+                    .filter(o => o.emergency)
+                    .map(o => (
+                      <a
+                        key={o.name}
+                        href={telHref(o.phones[0])}
+                        className="text-red-700 hover:underline"
+                      >
+                        {o.emergency} {o.phones[0]}
+                      </a>
+                    ))}
+                </div>
               ))}
+            </div>
           </div>
           <div className="flex items-center space-x-4">
             <a

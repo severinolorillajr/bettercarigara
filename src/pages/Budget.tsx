@@ -19,10 +19,38 @@ const PROGRAMS = {
 } as const;
 
 // ponytail: the API finds lines by title text, not by town. A title that only
-// uses "Carigara" inside a road's name (Palo-Carigara-Ormoc Rd) is a road
-// running through, mostly outside, the town. Switch to the API's place filter
-// once it exists (transparency-portal docs/api.md#gaps).
-const THROUGH_ROAD = /-Carigara(-| Rd)/;
+// uses "Carigara" inside a road's name (Palo-Carigara-Ormoc Rd, or
+// "Palo - Carigara - Ormoc" in the GAA) is a road running through, mostly
+// outside, the town. Switch to the API's place filter once it exists
+// (transparency-portal docs/api.md#gaps).
+const THROUGH_ROAD = /-\s*Carigara\s*(-|Rd|Road|National Road)/;
+
+const GAA = 'https://budget.bettergov.ph/api/v1/gaa';
+const GAA_YEARS = ['2020', '2021', '2022', '2023', '2024', '2025', '2026'];
+
+type GaaRow = {
+  fam_key: string;
+  name: string;
+  department: string;
+  years: Record<string, { amount: number }>;
+};
+
+// The GAA has no place filter, and /gaa/search stops at 100 results, so every
+// department's programs are searched by name (as transparency-portal does).
+async function loadGaa(): Promise<GaaRow[]> {
+  const departments = await get(`${GAA}/departments`);
+  const lists = await Promise.all(
+    (departments.data as { id: string }[]).map(d =>
+      // ponytail: one page of 500 per department; DPWH matches ~200.
+      get(`${GAA}/departments/${d.id}/programs?q=${PLACE}&limit=500`)
+    )
+  );
+  return lists.flatMap(l => l.data as GaaRow[]);
+}
+
+// A year counts only where its amount is above zero: the API carries a
+// project's lines into later years at ₱0.
+const funded = (r: GaaRow) => GAA_YEARS.filter(y => r.years[y]?.amount > 0);
 
 type Row = {
   id: string;
@@ -182,36 +210,87 @@ function ProjectTable({ rows }: { rows: Row[] }) {
   );
 }
 
+function GaaTable({ rows }: { rows: GaaRow[] }) {
+  const latest = (r: GaaRow) => funded(r).at(-1) ?? '';
+  const sorted = [...rows].sort((a, b) => latest(b).localeCompare(latest(a)));
+  return (
+    <div className="overflow-x-auto rounded-xl border border-gray-100 bg-white shadow-sm">
+      <table className="w-full text-left text-sm">
+        <thead className="bg-gray-50 text-xs uppercase text-gray-500">
+          <tr>
+            <th className="px-4 py-3">Program or project</th>
+            <th className="px-4 py-3">Enacted</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-gray-100">
+          {sorted.map(r => (
+            <tr key={r.fam_key} className="align-top">
+              <td className="px-4 py-3">
+                <div className="font-medium text-gray-900">{r.name}</div>
+                <div className="mt-0.5 text-xs text-gray-500">
+                  {r.department}
+                </div>
+              </td>
+              <td className="px-4 py-3 tabular-nums whitespace-nowrap">
+                {funded(r).map(y => (
+                  <div key={y}>
+                    <span className="text-gray-500">{y}</span>{' '}
+                    {amount(r.years[y].amount)}
+                  </div>
+                ))}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 export default function Budget() {
   const [data, setData] = useState<Data | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [gaa, setGaa] = useState<GaaRow[] | null>(null);
+  const [gaaError, setGaaError] = useState<string | null>(null);
 
   useEffect(() => {
     load()
       .then(setData)
       .catch(e => setError(String(e)));
+    loadGaa()
+      .then(setGaa)
+      .catch(e => setGaaError(String(e)));
   }, []);
 
   const inTown = data?.rows.filter(r => !THROUGH_ROAD.test(r.title)) ?? [];
   const throughRoads = data?.rows.filter(r => THROUGH_ROAD.test(r.title)) ?? [];
+  // Lines with no funded year (₱0 throughout) are dropped.
+  const gaaRows = gaa?.filter(r => funded(r).length > 0) ?? [];
+  const gaaInTown = gaaRows.filter(r => !THROUGH_ROAD.test(r.name));
+  const gaaRoads = gaaRows.filter(r => THROUGH_ROAD.test(r.name));
+  // Totals per year are of one enacted budget each; years are never added.
+  const gaaTotals = GAA_YEARS.map(y => ({
+    year: y,
+    php: gaaInTown.reduce((sum, r) => sum + (r.years[y]?.amount ?? 0), 0),
+  }));
 
   return (
     <main className="flex-grow">
       <SEO
-        title="Budget 2027"
-        description="Every FY 2027 national budget line that names Carigara, Leyte: the NEP compared with House Bill 10858, with the source page for every figure."
+        title="Budget"
+        description="National budget lines that name Carigara, Leyte: the FY 2027 NEP compared with House Bill 10858, and the enacted budgets of 2020 to 2026."
       />
 
       <section className="bg-gradient-to-br from-primary-700 to-primary-900 text-white">
         <div className="container mx-auto px-4 py-16 md:py-24">
           <Wallet className="mb-4 h-10 w-10 text-primary-200" />
           <h1 className="text-3xl font-extrabold md:text-5xl">
-            The 2027 budget in Carigara
+            Carigara in the national budget
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-white/85">
-            National budget projects that name Carigara, comparing the
-            President's proposal (NEP) with the House's version (House Bill
-            10858), with the page of the source document for every figure.
+            National budget projects that name Carigara: the 2027 proposal (NEP)
+            compared with the House's version (House Bill 10858), and what the
+            enacted budgets of 2020 to 2026 gave.
           </p>
         </div>
       </section>
@@ -328,6 +407,59 @@ export default function Budget() {
           <section className="bg-gray-50">
             <div className="container mx-auto px-4 py-12">
               <SectionHeading
+                eyebrow="Enacted budgets, 2020–2026"
+                title="What past budgets gave Carigara"
+              />
+              <p className="mb-6 max-w-3xl text-gray-700">
+                Every program or project, in any department, whose name names
+                Carigara in the General Appropriations Act of each year. These
+                are appropriations, the authority to spend, not spending.
+              </p>
+              {gaaError && (
+                <p className="text-red-700">
+                  The 2020–2026 budgets could not be loaded ({gaaError}).
+                </p>
+              )}
+              {!gaa && !gaaError && (
+                <p className="text-gray-500">Searching every department…</p>
+              )}
+              {gaa && (
+                <>
+                  <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
+                    {gaaTotals.map(t => (
+                      <div
+                        key={t.year}
+                        className="rounded-xl border border-gray-100 bg-white p-4 shadow-sm"
+                      >
+                        <p className="text-sm font-medium text-gray-500">
+                          {t.year}
+                        </p>
+                        <p className="mt-1 font-bold tabular-nums text-primary-700">
+                          {t.php > 0 ? amount(t.php) : '—'}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                  <GaaTable rows={gaaInTown} />
+                  {gaaRoads.length > 0 && (
+                    <details className="mt-6">
+                      <summary className="cursor-pointer font-semibold text-primary-600 hover:text-primary-700">
+                        Also {gaaRoads.length} lines on roads that pass through
+                        Carigara (not counted above)
+                      </summary>
+                      <div className="mt-4">
+                        <GaaTable rows={gaaRoads} />
+                      </div>
+                    </details>
+                  )}
+                </>
+              )}
+            </div>
+          </section>
+
+          <section>
+            <div className="container mx-auto px-4 py-12">
+              <SectionHeading
                 eyebrow="About the data"
                 title="Read this first"
               />
@@ -337,7 +469,9 @@ export default function Budget() {
                   <p>
                     Amounts are the figures published in the 2027 NEP and House
                     Bill 10858, not actual spending. A dash means the document
-                    has no such line.
+                    has no such line. The 2020–2026 amounts are enacted
+                    appropriations; each year stands on its own, and the 2027
+                    versions are never added to them.
                   </p>
                   <p>{data.notice}</p>
                   {data.disclaimers.map(d => (
