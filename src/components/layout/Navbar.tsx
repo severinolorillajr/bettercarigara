@@ -49,7 +49,11 @@ const Navbar: React.FC = () => {
           <div className="min-w-0 flex-1 overflow-hidden text-xs font-semibold whitespace-nowrap motion-reduce:overflow-x-auto">
             {/* Two identical copies scroll by half their width, so the
                 ticker loops without a gap. The second copy is inert. */}
-            <div className="flex w-max animate-ticker hover:[animation-play-state:paused] focus-within:[animation-play-state:paused] motion-reduce:animate-none">
+            <div
+              className="flex w-max animate-ticker hover:[animation-play-state:paused] focus-within:[animation-play-state:paused] motion-reduce:animate-none"
+              // Slow enough to read, whatever the number of offices.
+              style={{ animationDuration: `${directory.offices.length * 4}s` }}
+            >
               {[false, true].map(copy => (
                 <div
                   key={String(copy)}
@@ -64,17 +68,26 @@ const Navbar: React.FC = () => {
                     <Phone className="h-3 w-3" aria-hidden />
                     Emergency 911
                   </a>
-                  {directory.offices
-                    .filter(o => o.emergency)
-                    .map(o => (
-                      <a
-                        key={o.name}
-                        href={telHref(o.phones[0])}
-                        className="text-red-700 hover:underline"
-                      >
-                        {o.emergency} {o.phones[0]}
-                      </a>
-                    ))}
+                  {[
+                    ...directory.offices.filter(o => o.emergency),
+                    ...directory.offices.filter(o => !o.emergency),
+                  ].map(o => (
+                    <span
+                      key={o.name}
+                      className={o.emergency ? 'text-red-700' : 'text-gray-700'}
+                    >
+                      {o.emergency ?? o.name}
+                      {o.phones.map(phone => (
+                        <a
+                          key={phone}
+                          href={telHref(phone)}
+                          className="ml-1.5 hover:underline"
+                        >
+                          {phone}
+                        </a>
+                      ))}
+                    </span>
+                  ))}
                 </div>
               ))}
             </div>
