@@ -1,6 +1,18 @@
 import { useEffect, useState } from 'react';
 import { AlertTriangle, ExternalLink, Wallet } from 'lucide-react';
 import SEO from '../components/SEO';
+import {
+  ColumnChart,
+  Legend,
+  StatTile,
+  type Column,
+} from '../components/budget/Charts';
+import { compact } from '../lib/utils';
+
+// Enacted = categorical slot 1; the 2027 versions take a lighter step of the
+// same blue (step 250), so they read as related but not the same thing.
+const ENACTED = '#2a78d6';
+const PROPOSED = '#86b6ef';
 
 // Every figure on this page comes live from the BetterGov.ph Budget API, the
 // data behind budget.bettergov.ph. Rules kept from bettergovph/transparency-portal:
@@ -51,6 +63,48 @@ async function loadGaa(): Promise<GaaRow[]> {
 // A year counts only where its amount is above zero: the API carries a
 // project's lines into later years at ₱0.
 const funded = (r: GaaRow) => GAA_YEARS.filter(y => r.years[y]?.amount > 0);
+
+// Categorical slots 1-6 of the dataviz reference palette, in its fixed order
+// (validated for adjacent CVD separation). Color follows the category.
+const CATEGORIES = [
+  { key: 'roads', name: 'Roads & bridges', color: '#2a78d6' },
+  { key: 'flood', name: 'Flood control & drainage', color: '#eb6834' },
+  { key: 'buildings', name: 'Buildings & facilities', color: '#1baf7a' },
+  { key: 'water', name: 'Water & power', color: '#eda100' },
+  { key: 'health', name: 'Health', color: '#e87ba4' },
+  { key: 'other', name: 'Studies & other', color: '#008300' },
+] as const;
+type Category = (typeof CATEGORIES)[number];
+
+// ponytail: sorted by title keywords, first match wins. Good enough for ~30
+// lines; a line that lands wrong gets a keyword here.
+const RULES: [Category['key'], RegExp][] = [
+  ['other', /feasibility|stud(y|ies)/i],
+  ['health', /hospital|health/i],
+  ['flood', /flood|embankment|drainage|seawall|revetment/i],
+  ['water', /water|solar|electri|light/i],
+  ['buildings', /building|covered court|school|arch|facility|hall|gym/i],
+  ['roads', /road|bridge|\bbr\.|street|concret|fmr|chainage/i],
+];
+
+const categorize = (title: string): Category => {
+  const key = RULES.find(([, re]) => re.test(title))?.[0] ?? 'other';
+  return CATEGORIES.find(c => c.key === key)!;
+};
+
+function TypeBadge({ title }: { title: string }) {
+  const c = categorize(title);
+  return (
+    <span className="inline-flex items-center gap-1.5">
+      <span
+        className="h-2 w-2 rounded-sm"
+        style={{ backgroundColor: c.color }}
+        aria-hidden
+      />
+      {c.name}
+    </span>
+  );
+}
 
 type Row = {
   id: string;
@@ -184,7 +238,7 @@ function ProjectTable({ rows }: { rows: Row[] }) {
                   {r.title}
                 </a>
                 <div className="mt-0.5 text-xs text-gray-500">
-                  {PROGRAMS[r.dataset]}
+                  <TypeBadge title={r.title} /> · {PROGRAMS[r.dataset]}
                   {r.pap && ` · ${r.pap}`}
                 </div>
               </td>
@@ -228,7 +282,7 @@ function GaaTable({ rows }: { rows: GaaRow[] }) {
               <td className="px-4 py-3">
                 <div className="font-medium text-gray-900">{r.name}</div>
                 <div className="mt-0.5 text-xs text-gray-500">
-                  {r.department}
+                  <TypeBadge title={r.name} /> · {r.department}
                 </div>
               </td>
               <td className="px-4 py-3 tabular-nums whitespace-nowrap">
@@ -252,6 +306,7 @@ export default function Budget() {
   const [error, setError] = useState<string | null>(null);
   const [gaa, setGaa] = useState<GaaRow[] | null>(null);
   const [gaaError, setGaaError] = useState<string | null>(null);
+  const [cat, setCat] = useState<Category['key'] | null>(null);
 
   useEffect(() => {
     load()
@@ -269,10 +324,45 @@ export default function Budget() {
   const gaaInTown = gaaRows.filter(r => !THROUGH_ROAD.test(r.name));
   const gaaRoads = gaaRows.filter(r => THROUGH_ROAD.test(r.name));
   // Totals per year are of one enacted budget each; years are never added.
-  const gaaTotals = GAA_YEARS.map(y => ({
-    year: y,
-    php: gaaInTown.reduce((sum, r) => sum + (r.years[y]?.amount ?? 0), 0),
+  const yearTotal = (rows: GaaRow[], y: string) =>
+    rows.reduce((sum, r) => sum + (r.years[y]?.amount ?? 0), 0);
+  const peak = gaa
+    ? GAA_YEARS.map(y => ({ y, php: yearTotal(gaaInTown, y) })).sort(
+        (a, b) => b.php - a.php
+      )[0]
+    : undefined;
+  const gaaShown = cat
+    ? gaaInTown.filter(r => categorize(r.name).key === cat)
+    : gaaInTown;
+  const gaaColumns: Column[] = GAA_YEARS.map(y => ({
+    label: y,
+    parts: CATEGORIES.map(c => ({
+      name: c.name,
+      color: c.color,
+      value: yearTotal(
+        gaaShown.filter(r => categorize(r.name).key === c.key),
+        y
+      ),
+    })),
   }));
+  const gaaCounts = CATEGORIES.map(c => ({
+    ...c,
+    count: gaaInTown.filter(r => categorize(r.name).key === c.key).length,
+  })).filter(c => c.count > 0);
+
+  // Within one version, lines add up; the two versions are compared.
+  const sum = (php: (r: Row) => number | null) =>
+    inTown.reduce((s, r) => s + (php(r) ?? 0), 0);
+  const byStatus = [...new Set(inTown.map(r => r.status_label))].map(label => {
+    const rows = inTown.filter(r => r.status_label === label);
+    return {
+      label,
+      count: rows.length,
+      nep: rows.reduce((s, r) => s + (r.nep_php ?? 0), 0),
+      house: rows.reduce((s, r) => s + (r.house_php ?? 0), 0),
+    };
+  });
+  const office = data?.district.offices[0];
 
   return (
     <main className="flex-grow">
@@ -319,92 +409,187 @@ export default function Budget() {
 
       {data && (
         <>
-          <section className="container mx-auto px-4 py-12">
-            <SectionHeading eyebrow="FY 2027" title="Projects in Carigara" />
-            <p className="mb-6 max-w-3xl text-gray-700">
-              Every line in the DPWH, farm-to-market road, health facility and
-              irrigation lists whose title names Carigara. A project listed in
-              only one version is a lead to check, not a confirmed insertion or
-              deletion.
-            </p>
-            <ProjectTable rows={inTown} />
-          </section>
-
-          {throughRoads.length > 0 && (
-            <section className="bg-gray-50">
-              <div className="container mx-auto px-4 py-12">
-                <SectionHeading
-                  eyebrow="FY 2027"
-                  title="Roads that pass through Carigara"
+          <section className="container mx-auto px-4 pt-12">
+            <SectionHeading eyebrow="At a glance" title="The numbers" />
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <StatTile
+                label="2027 House bill, in Carigara"
+                value={compact.format(sum(r => r.house_php))}
+                note={`${inTown.filter(r => r.house_php).length} projects`}
+              />
+              <StatTile
+                label="2027 proposal (NEP), in Carigara"
+                value={compact.format(sum(r => r.nep_php))}
+                note={`${inTown.filter(r => r.nep_php).length} projects`}
+              />
+              <StatTile
+                label="Biggest enacted year, 2020–2026"
+                value={peak ? compact.format(peak.php) : '…'}
+                note={peak ? `in ${peak.y}` : 'Loading…'}
+              />
+              {office && (
+                <StatTile
+                  label="DPWH district office, 2026"
+                  value={compact.format(
+                    office.years.find(y => y.fy === 2026)?.php ?? 0
+                  )}
+                  note="for the whole 2nd District"
                 />
-                <p className="mb-6 max-w-3xl text-gray-700">
-                  These lines name Carigara only as part of a road's name, such
-                  as the Palo–Carigara–Ormoc Road. Most of these sections and
-                  bridges lie in other towns, so they are listed apart and not
-                  counted as Carigara's.
-                </p>
-                <ProjectTable rows={throughRoads} />
-              </div>
-            </section>
-          )}
+              )}
+            </div>
+          </section>
 
           <section className="container mx-auto px-4 py-12">
             <SectionHeading
-              eyebrow="DPWH, 2020–2027"
-              title={data.district.label}
+              eyebrow="FY 2027"
+              title="What changed between the two versions"
             />
             <p className="mb-6 max-w-3xl text-gray-700">
-              Carigara is in Leyte's 2nd District, represented by{' '}
-              {data.district.representative.name}. Its DPWH office builds for
-              every town in the district, not Carigara alone, so these are
-              district-wide figures. Each year is shown on its own and never
-              added together.
+              The President proposes the budget (NEP); the House then passes its
+              own version (House Bill 10858). These are the projects whose title
+              names Carigara, grouped by what the House did with them. A project
+              in only one version is a lead to check, not a confirmed insertion
+              or deletion.
             </p>
-            {data.district.offices.map(office => (
-              <div
-                key={office.name}
-                className="mb-6 overflow-x-auto rounded-xl border border-gray-100 bg-white shadow-sm"
-              >
-                <div className="px-4 pt-4">
-                  <h3 className="font-semibold text-gray-900">{office.name}</h3>
-                  <p className="text-xs text-gray-500">{office.tier_text}</p>
+            <div className="mb-6 grid gap-4 sm:grid-cols-3">
+              {byStatus.map(s => (
+                <div
+                  key={s.label}
+                  className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm"
+                >
+                  <p className="font-semibold text-gray-900">{s.label}</p>
+                  <p className="mt-1 text-sm text-gray-600">
+                    {s.count} {s.count === 1 ? 'project' : 'projects'}
+                  </p>
+                  <dl className="mt-3 grid grid-cols-2 gap-2 text-sm">
+                    <div>
+                      <dt className="text-xs text-gray-500">NEP</dt>
+                      <dd className="font-semibold">
+                        {s.nep ? compact.format(s.nep) : '—'}
+                      </dd>
+                    </div>
+                    <div>
+                      <dt className="text-xs text-gray-500">House bill</dt>
+                      <dd className="font-semibold">
+                        {s.house ? compact.format(s.house) : '—'}
+                      </dd>
+                    </div>
+                  </dl>
                 </div>
-                <table className="mt-2 w-full text-left text-sm">
-                  <thead className="bg-gray-50 text-xs uppercase text-gray-500">
-                    <tr>
-                      <th className="px-4 py-3">Year</th>
-                      <th className="px-4 py-3">Version</th>
-                      <th className="px-4 py-3">Covers</th>
-                      <th className="px-4 py-3 text-right">Amount</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-100">
-                    {office.years.map(y => (
-                      <tr key={`${y.fy}:${y.stage}`}>
-                        <td className="px-4 py-2">{y.fy}</td>
-                        <td className="px-4 py-2">{y.stage_label}</td>
-                        <td className="px-4 py-2 text-gray-600">{y.scope}</td>
-                        <td className="px-4 py-2 text-right tabular-nums">
-                          {amount(y.php)}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            ))}
-            <a
-              href={data.district.url}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1 font-semibold text-primary-600 hover:text-primary-700"
-            >
-              The full district on budget.bettergov.ph
-              <ExternalLink className="h-4 w-4" />
-            </a>
+              ))}
+            </div>
+            <ProjectTable rows={inTown} />
+            {throughRoads.length > 0 && (
+              <details className="mt-6">
+                <summary className="cursor-pointer font-semibold text-primary-600 hover:text-primary-700">
+                  Also {throughRoads.length} lines on roads that pass through
+                  Carigara (not counted above)
+                </summary>
+                <p className="my-4 max-w-3xl text-sm text-gray-700">
+                  These lines name Carigara only as part of a road's name, such
+                  as the Palo–Carigara–Ormoc Road. Most of these sections and
+                  bridges lie in other towns.
+                </p>
+                <ProjectTable rows={throughRoads} />
+              </details>
+            )}
           </section>
 
           <section className="bg-gray-50">
+            <div className="container mx-auto px-4 py-12">
+              <SectionHeading
+                eyebrow="DPWH, 2020–2027"
+                title={data.district.label}
+              />
+              <p className="mb-6 max-w-3xl text-gray-700">
+                Carigara is in Leyte's 2nd District, represented by{' '}
+                {data.district.representative.name.replace(/\.$/, '')}. Its DPWH
+                office builds for every town in the district, not Carigara
+                alone, so these are district-wide figures. Each year is shown on
+                its own and never added together.
+              </p>
+              {data.district.offices.map(office => (
+                <div
+                  key={office.name}
+                  className="mb-6 overflow-x-auto rounded-xl border border-gray-100 bg-white shadow-sm"
+                >
+                  <div className="px-4 pt-4">
+                    <h3 className="font-semibold text-gray-900">
+                      {office.name}
+                    </h3>
+                    <p className="text-xs text-gray-500">{office.tier_text}</p>
+                  </div>
+                  <div className="space-y-4 p-4">
+                    <Legend
+                      items={[
+                        { name: 'Enacted budget (GAA)', color: ENACTED },
+                        { name: '2027 versions, not yet law', color: PROPOSED },
+                      ]}
+                    />
+                    <ColumnChart
+                      columns={office.years.map(y => ({
+                        label:
+                          y.stage === 'gaa'
+                            ? String(y.fy)
+                            : `${y.fy} ${y.stage === 'nep' ? 'NEP' : 'House*'}`,
+                        parts: [
+                          {
+                            name: y.stage_label,
+                            value: y.php ?? 0,
+                            color: y.stage === 'gaa' ? ENACTED : PROPOSED,
+                          },
+                        ],
+                      }))}
+                    />
+                    <p className="text-xs text-gray-500">
+                      * The House bill figure counts named projects only; the
+                      NEP and enacted figures cover the whole office.
+                    </p>
+                  </div>
+                  <details className="px-4 pb-4">
+                    <summary className="cursor-pointer text-sm font-semibold text-primary-600 hover:text-primary-700">
+                      Show as a table
+                    </summary>
+                    <table className="mt-2 w-full text-left text-sm">
+                      <thead className="bg-gray-50 text-xs uppercase text-gray-500">
+                        <tr>
+                          <th className="px-4 py-3">Year</th>
+                          <th className="px-4 py-3">Version</th>
+                          <th className="px-4 py-3">Covers</th>
+                          <th className="px-4 py-3 text-right">Amount</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-gray-100">
+                        {office.years.map(y => (
+                          <tr key={`${y.fy}:${y.stage}`}>
+                            <td className="px-4 py-2">{y.fy}</td>
+                            <td className="px-4 py-2">{y.stage_label}</td>
+                            <td className="px-4 py-2 text-gray-600">
+                              {y.scope}
+                            </td>
+                            <td className="px-4 py-2 text-right tabular-nums">
+                              {amount(y.php)}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </details>
+                </div>
+              ))}
+              <a
+                href={data.district.url}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 font-semibold text-primary-600 hover:text-primary-700"
+              >
+                The full district on budget.bettergov.ph
+                <ExternalLink className="h-4 w-4" />
+              </a>
+            </div>
+          </section>
+
+          <section>
             <div className="container mx-auto px-4 py-12">
               <SectionHeading
                 eyebrow="Enacted budgets, 2020–2026"
@@ -425,22 +610,55 @@ export default function Budget() {
               )}
               {gaa && (
                 <>
-                  <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
-                    {gaaTotals.map(t => (
-                      <div
-                        key={t.year}
-                        className="rounded-xl border border-gray-100 bg-white p-4 shadow-sm"
+                  <div
+                    className="mb-6 flex flex-wrap gap-2"
+                    role="group"
+                    aria-label="Filter by type"
+                  >
+                    {[
+                      { key: null, name: 'All types', count: gaaInTown.length },
+                      ...gaaCounts,
+                    ].map(c => (
+                      <button
+                        key={c.name}
+                        type="button"
+                        onClick={() => setCat(c.key)}
+                        aria-pressed={cat === c.key}
+                        className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-sm transition ${
+                          cat === c.key
+                            ? 'border-primary-600 bg-primary-600 text-white'
+                            : 'border-gray-200 bg-white text-gray-700 hover:border-primary-300'
+                        }`}
                       >
-                        <p className="text-sm font-medium text-gray-500">
-                          {t.year}
-                        </p>
-                        <p className="mt-1 font-bold tabular-nums text-primary-700">
-                          {t.php > 0 ? amount(t.php) : '—'}
-                        </p>
-                      </div>
+                        {'color' in c && (
+                          <span
+                            className="h-2.5 w-2.5 rounded-sm ring-1 ring-white"
+                            style={{ backgroundColor: c.color }}
+                            aria-hidden
+                          />
+                        )}
+                        {c.name}
+                        <span className="opacity-70">{c.count}</span>
+                      </button>
                     ))}
                   </div>
-                  <GaaTable rows={gaaInTown} />
+                  <div className="mb-6 space-y-4 rounded-xl border border-gray-100 bg-white p-4 shadow-sm">
+                    <h3 className="font-semibold text-gray-900">
+                      Enacted for Carigara, by year and type
+                    </h3>
+                    <Legend
+                      items={CATEGORIES.filter(
+                        c => !cat || c.key === cat
+                      ).filter(c => gaaCounts.some(g => g.key === c.key))}
+                    />
+                    <ColumnChart columns={gaaColumns} />
+                    <p className="text-xs text-gray-500">
+                      Each year is its own budget; the years are not added
+                      together. Hover a block for its amount; every line is in
+                      the table below.
+                    </p>
+                  </div>
+                  <GaaTable rows={gaaShown} />
                   {gaaRoads.length > 0 && (
                     <details className="mt-6">
                       <summary className="cursor-pointer font-semibold text-primary-600 hover:text-primary-700">
@@ -457,7 +675,7 @@ export default function Budget() {
             </div>
           </section>
 
-          <section>
+          <section className="bg-gray-50">
             <div className="container mx-auto px-4 py-12">
               <SectionHeading
                 eyebrow="About the data"

@@ -52,7 +52,7 @@ const Navbar: React.FC = () => {
             <div
               className="flex w-max animate-ticker hover:[animation-play-state:paused] focus-within:[animation-play-state:paused] motion-reduce:animate-none"
               // Slow enough to read, whatever the number of offices.
-              style={{ animationDuration: `${directory.offices.length * 4}s` }}
+              style={{ animationDuration: `${directory.offices.length * 12}s` }}
             >
               {[false, true].map(copy => (
                 <div

@@ -13,6 +13,14 @@ export function formatDate(date: Date): string {
   }).format(date);
 }
 
+// ₱249.7M, ₱5M
+export const compact = new Intl.NumberFormat('en-PH', {
+  style: 'currency',
+  currency: 'PHP',
+  notation: 'compact',
+  maximumFractionDigits: 1,
+});
+
 export function truncateText(text: string, maxLength: number): string {
   if (text.length <= maxLength) return text;
   return text.slice(0, maxLength) + '...';
